@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Coin Details</h1>
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ coin.type }}</span>
+        <p>State: {{ coin.state }}</p>
+        <p>Year released: {{ coin.year_released }}</p>
+        <p>Date of Statehood: {{ coin.date_of_statehood }}</p>
+    </div>
+    <div class="card-action">
+        <a href="{% url 'coins_update' coin.id %}">Edit</a>
+        <a href="{% url 'coins_delete' coin.id %}">Delete</a>
+    </div>
+</div>
+
+{% endblock %}
