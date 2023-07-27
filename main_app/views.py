@@ -14,11 +14,6 @@ def about(request):
     return render(request, 'about.html')
 
 def coins_index(request):
-    return render(request, 'coins/index.html', {
-        'coins': coins
-})
-
-def coins_index(request):
     coins = Coin.objects.all()
     return render(request, 'coins/index.html', { 'coins': coins })
 
@@ -29,7 +24,7 @@ def coins_detail(request, coin_id):
 class CoinCreate(CreateView):
     model = Coin
     fields = '__all__'
-    success_url = '/coins/{coin_id}'
+    success_url = '/coins'
 
 class CoinUpdate(UpdateView):
     model = Coin
