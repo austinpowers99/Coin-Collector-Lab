@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Coin
+from .forms import MintingForm
 
 # Create your views here.
 coins = [
@@ -19,7 +20,10 @@ def coins_index(request):
 
 def coins_detail(request, coin_id):
     coin = Coin.objects.get(id=coin_id)
-    return render(request, 'coins/detail.html', { 'coin': coin })
+    minting_form = MintingForm()
+    return render(request, 'coins/detail.html', { 
+        'coin': coin, 'minting_form': minting_form
+    })
 
 class CoinCreate(CreateView):
     model = Coin
@@ -28,7 +32,7 @@ class CoinCreate(CreateView):
 
 class CoinUpdate(UpdateView):
     model = Coin
-    field = ['type', 'state', 'year_released', 'date_of_statehood']
+    fields = ['type', 'state', 'year_released', 'date_of_statehood']
 
 class CoinDelete(DeleteView):
     model = Coin
